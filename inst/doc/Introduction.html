@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2017-03-20" />
+<meta name="date" content="2017-03-29" />
 
 <title>Introduction</title>
 
@@ -68,7 +68,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title toc-ignore">Introduction</h1>
-<h4 class="date"><em>2017-03-20</em></h4>
+<h4 class="date"><em>2017-03-29</em></h4>
 
 
 
@@ -166,28 +166,29 @@ security_logs
 <p>To apply the statistical methods that we’ll see in the sections that follow, we employ the tabulated vector approach. This approach transforms the security log data into unique counts of data attributes based on pre-defined time blocks. Therefore, as each time block is generated, the categorical fields are separated by their levels and a count of occurrences for each level are recorded into a vector. All numerical fields, such as bytes in and bytes out, are recorded as a summation within the time block. The result is what we call a “state vector matrix”.</p>
 <p>Thus, for our <code>security_logs</code> data we can create our state vector matrix based on our data being divided into 10 time blocks. What results is the summary of instances for each categorical level in our data for each time block. Consequently, row one represents the first time block and there were 2 instances of CISCO as the device vendor, 1 instances of IBM, etc.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tabulate_state_vector</span>(security_logs, <span class="dv">10</span>)
-## # A tibble: 30 × 36
-##    CISCO   IBM Juniper McAfee `Palo Alto Networks`   ASA Firewall   NSP
-##    &lt;int&gt; &lt;int&gt;   &lt;int&gt;  &lt;int&gt;                &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt;
-## 1      2     1       1      6                    0     2        0     4
-## 2      0     2       4      2                    2     0        2     0
-## 3      2     4       2      2                    0     2        0     0
-## 4      5     1       2      1                    1     5        1     0
-## 5      3     1       1      3                    2     3        2     2
-## 6      2     1       2      4                    1     2        1     3
-## 7      2     2       1      3                    2     2        2     3
-## 8      3     3       1      3                    0     3        0     1
-## 9      0     1       4      3                    2     0        2     2
-## 10     2     2       2      4                    0     2        0     1
-## # ... with 20 more rows, and 28 more variables: SNIPS &lt;int&gt;, SRX &lt;int&gt;,
-## #   ePO &lt;int&gt;, Attempt &lt;int&gt;, Failure &lt;int&gt;, Success &lt;int&gt;,
-## #   `174.110.206.174` &lt;int&gt;, `223.70.128.61` &lt;int&gt;, `227.12.127.87` &lt;int&gt;,
-## #   `28.9.24.154` &lt;int&gt;, `89.130.69.91` &lt;int&gt;, `145.114.4.203` &lt;int&gt;,
+## # A tibble: 30 × 43
+##    CISCO   IBM Juniper McAfee `Palo Alto Networks`   NA1   ASA Firewall
+##    &lt;int&gt; &lt;int&gt;   &lt;int&gt;  &lt;int&gt;                &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;
+## 1      2     1       1      6                    0     0     2        0
+## 2      0     2       4      2                    2     0     0        2
+## 3      2     4       2      2                    0     0     2        0
+## 4      5     1       2      1                    1     0     5        1
+## 5      3     1       1      3                    2     0     3        2
+## 6      2     1       2      4                    1     0     2        1
+## 7      2     2       1      3                    2     0     2        2
+## 8      3     3       1      3                    0     0     3        0
+## 9      0     1       4      3                    2     0     0        2
+## 10     2     2       2      4                    0     0     2        0
+## # ... with 20 more rows, and 35 more variables: NSP &lt;int&gt;, SNIPS &lt;int&gt;,
+## #   SRX &lt;int&gt;, ePO &lt;int&gt;, NA2 &lt;int&gt;, Attempt &lt;int&gt;, Failure &lt;int&gt;,
+## #   Success &lt;int&gt;, NA3 &lt;int&gt;, `174.110.206.174` &lt;int&gt;,
+## #   `223.70.128.61` &lt;int&gt;, `227.12.127.87` &lt;int&gt;, `28.9.24.154` &lt;int&gt;,
+## #   `89.130.69.91` &lt;int&gt;, NA4 &lt;int&gt;, `145.114.4.203` &lt;int&gt;,
 ## #   `151.194.233.198` &lt;int&gt;, `219.142.109.8` &lt;int&gt;, `32.73.26.223` &lt;int&gt;,
-## #   `56.137.121.203` &lt;int&gt;, TCP &lt;int&gt;, UDP &lt;int&gt;, China &lt;int&gt;,
-## #   India &lt;int&gt;, Korea &lt;int&gt;, Netherlands &lt;int&gt;, Russia &lt;int&gt;, US &lt;int&gt;,
-## #   `United Kingdom` &lt;int&gt;, Src_Port &lt;int&gt;, Dst_Port &lt;int&gt;,
-## #   Bytes_TRF &lt;int&gt;</code></pre></div>
+## #   `56.137.121.203` &lt;int&gt;, NA5 &lt;int&gt;, TCP &lt;int&gt;, UDP &lt;int&gt;, NA6 &lt;int&gt;,
+## #   China &lt;int&gt;, India &lt;int&gt;, Korea &lt;int&gt;, Netherlands &lt;int&gt;,
+## #   Russia &lt;int&gt;, US &lt;int&gt;, `United Kingdom` &lt;int&gt;, NA7 &lt;int&gt;,
+## #   Src_Port &lt;int&gt;, Dst_Port &lt;int&gt;, Bytes_TRF &lt;int&gt;</code></pre></div>
 </div>
 <div id="multicollinearity-adjustment" class="section level2">
 <h2>Multicollinearity Adjustment</h2>
@@ -277,12 +278,12 @@ security_logs
 <p>where <span class="math inline">\(X_s\)</span> is the standardized observations, <span class="math inline">\(R^{-1}\)</span> is the inverse of the correlation matrix, and $ $ is the factor loadings matrix. To simplify the results for interpretation, the factor loadings can undergo an orthogonal or oblique rotation. Orthogonal rotations assume independence between the factors while oblique rotations allow the factors to correlate. <code>anomalyDetection</code> utilizes the most common rotation option known as varimax. Varimax rotates the factors orthogonally to maximize the variance of the squared factor loadings which forces large factors to increase and small ones to decrease, providing easier interpretation.</p>
 <p>To begin using factor analysis, the dimensions of the reduced state vector matrix are first passed to the <code>horns_curve</code> function to find the recommended set of eigenvalues.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">horns_curve</span>(state_vec)
-##  [1] 3.438403190 2.927671740 2.561271988 2.262701787 2.017416104
-##  [6] 1.796901836 1.594455904 1.417058037 1.254591425 1.108542680
-## [11] 0.975235141 0.852490976 0.737338437 0.635215753 0.540631146
-## [16] 0.453520525 0.377900578 0.309936316 0.247051393 0.191967524
-## [21] 0.145283561 0.104695414 0.070678664 0.043293754 0.023022723
-## [26] 0.008223452</code></pre></div>
+##  [1] 3.413379217 2.915474604 2.554115750 2.256719278 2.001067720
+##  [6] 1.780663565 1.580910010 1.410048519 1.247361636 1.104130151
+## [11] 0.968079883 0.846912992 0.733072794 0.634208441 0.541600629
+## [16] 0.451886199 0.373596369 0.306166193 0.245773367 0.190619696
+## [21] 0.143541737 0.103389457 0.069773709 0.043551302 0.022697721
+## [26] 0.008409727</code></pre></div>
 <p>Next, the dimensionality is determined by finding the eigenvalues of the correlation matrix of the state vector matrix and retaining only those factors whose eigenvalues are greater than or equal to those produced by <code>horns_curve</code>. We use <code>factor_analysis</code> to reduce the state vector matrix into resultant factors. The <code>factor_analysis</code> function generates a list containing five outputs:</p>
 <ol style="list-style-type: decimal">
 <li><code>fa_loadings</code>: numerical matrix with the original factor loadings</li>

@@ -1,4 +1,4 @@
-1c535652662fffef67fe4d91dbd76c7d *DESCRIPTION
+04507c33125bb76858c7108411f6caa3 *DESCRIPTION
 295bf778e28021e6a8ca87cf52023c69 *NAMESPACE
 f532a9afd1be98cb976006b1ae41c148 *R/bd_row.R
 777ba4450ec23a5b86b159f668279f31 *R/block_inspect.R
@@ -11,13 +11,13 @@ a419dad6a95901d5815eefde1de8b372 *R/mahalanobis_distance.R
 b284cf226ac3c84b457f3069c4bde414 *R/mc_adjust.R
 a89485318aa3192a46cf2bff2c9996db *R/pca.R
 fedba13630b94a81a5491d1ab72ddb42 *R/pipe.R
-e77af1463e55f45dfc486b6ecf79b71f *R/tabulated_state_vector.R
-b3654fe260d83d7f663e5f00d76e181c *README.md
-405df56ccf7c0ec752ca017eff47f462 *build/vignette.rds
+a0729f2190848d8a73fe28e51ce84760 *R/tabulated_state_vector.R
+86f22a76c824d475d0d6cafe5fb64d68 *README.md
+09c219a830f224d8ede3daf0bb5f272c *build/vignette.rds
 9ed82e260622d46cd42dc9c1dffb4c46 *data/security_logs.rda
 9fca7605739b0a38c78b41835f760abe *inst/doc/Introduction.R
 d48ae225453f231d6f89ec9c7278d834 *inst/doc/Introduction.Rmd
-8dd3d6555ac1435379ef8a7305d7ace0 *inst/doc/Introduction.html
+9fb391779e6d976c620f978e6ae12bb4 *inst/doc/Introduction.html
 0aecf3af7de9b24c6252a3b8925b89f9 *man/bd_row.Rd
 ab8ff6b415868e57fb9e20f7e9d27838 *man/factor_analysis.Rd
 cb9ba63971483066f4c7d264b0d3c2e8 *man/factor_analysis_results.Rd
@@ -44,5 +44,5 @@ e02034c5aa3c9208f331d5de11d9f627 *tests/testthat/test_kaisers_index.R
 414175efbb355881400c43b25ccc0fa6 *tests/testthat/test_mc_adjust.R
 a52c825b8781890660963e0497453e36 *tests/testthat/test_principal_components.R
 3210d82b3bdcb287472fc07b0be47dcb *tests/testthat/test_principal_components_result.R
-d73702de2e47eec715698522697e85ed *tests/testthat/test_tabulate_state_vector.R
+cf6639f5c1eec05cb3a000b360a1d976 *tests/testthat/test_tabulate_state_vector.R
 d48ae225453f231d6f89ec9c7278d834 *vignettes/Introduction.Rmd
