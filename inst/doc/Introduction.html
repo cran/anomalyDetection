@@ -4,14 +4,14 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="date" content="2017-03-29" />
+<meta name="date" content="2017-07-07" />
 
 <title>Introduction</title>
 
@@ -68,7 +68,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title toc-ignore">Introduction</h1>
-<h4 class="date"><em>2017-03-29</em></h4>
+<h4 class="date"><em>2017-07-07</em></h4>
 
 
 
@@ -168,7 +168,7 @@ security_logs
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tabulate_state_vector</span>(security_logs, <span class="dv">10</span>)
 ## # A tibble: 30 × 43
 ##    CISCO   IBM Juniper McAfee `Palo Alto Networks`   NA1   ASA Firewall
-##    &lt;int&gt; &lt;int&gt;   &lt;int&gt;  &lt;int&gt;                &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;                &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
 ## 1      2     1       1      6                    0     0     2        0
 ## 2      0     2       4      2                    2     0     0        2
 ## 3      2     4       2      2                    0     0     2        0
@@ -179,16 +179,16 @@ security_logs
 ## 8      3     3       1      3                    0     0     3        0
 ## 9      0     1       4      3                    2     0     0        2
 ## 10     2     2       2      4                    0     0     2        0
-## # ... with 20 more rows, and 35 more variables: NSP &lt;int&gt;, SNIPS &lt;int&gt;,
-## #   SRX &lt;int&gt;, ePO &lt;int&gt;, NA2 &lt;int&gt;, Attempt &lt;int&gt;, Failure &lt;int&gt;,
-## #   Success &lt;int&gt;, NA3 &lt;int&gt;, `174.110.206.174` &lt;int&gt;,
-## #   `223.70.128.61` &lt;int&gt;, `227.12.127.87` &lt;int&gt;, `28.9.24.154` &lt;int&gt;,
-## #   `89.130.69.91` &lt;int&gt;, NA4 &lt;int&gt;, `145.114.4.203` &lt;int&gt;,
-## #   `151.194.233.198` &lt;int&gt;, `219.142.109.8` &lt;int&gt;, `32.73.26.223` &lt;int&gt;,
-## #   `56.137.121.203` &lt;int&gt;, NA5 &lt;int&gt;, TCP &lt;int&gt;, UDP &lt;int&gt;, NA6 &lt;int&gt;,
-## #   China &lt;int&gt;, India &lt;int&gt;, Korea &lt;int&gt;, Netherlands &lt;int&gt;,
-## #   Russia &lt;int&gt;, US &lt;int&gt;, `United Kingdom` &lt;int&gt;, NA7 &lt;int&gt;,
-## #   Src_Port &lt;int&gt;, Dst_Port &lt;int&gt;, Bytes_TRF &lt;int&gt;</code></pre></div>
+## # ... with 20 more rows, and 35 more variables: NSP &lt;dbl&gt;, SNIPS &lt;dbl&gt;,
+## #   SRX &lt;dbl&gt;, ePO &lt;dbl&gt;, NA2 &lt;dbl&gt;, Attempt &lt;dbl&gt;, Failure &lt;dbl&gt;,
+## #   Success &lt;dbl&gt;, NA3 &lt;dbl&gt;, `174.110.206.174` &lt;dbl&gt;,
+## #   `223.70.128.61` &lt;dbl&gt;, `227.12.127.87` &lt;dbl&gt;, `28.9.24.154` &lt;dbl&gt;,
+## #   `89.130.69.91` &lt;dbl&gt;, NA4 &lt;dbl&gt;, `145.114.4.203` &lt;dbl&gt;,
+## #   `151.194.233.198` &lt;dbl&gt;, `219.142.109.8` &lt;dbl&gt;, `32.73.26.223` &lt;dbl&gt;,
+## #   `56.137.121.203` &lt;dbl&gt;, NA5 &lt;dbl&gt;, TCP &lt;dbl&gt;, UDP &lt;dbl&gt;, NA6 &lt;dbl&gt;,
+## #   China &lt;dbl&gt;, India &lt;dbl&gt;, Korea &lt;dbl&gt;, Netherlands &lt;dbl&gt;,
+## #   Russia &lt;dbl&gt;, US &lt;dbl&gt;, `United Kingdom` &lt;dbl&gt;, NA7 &lt;dbl&gt;,
+## #   Src_Port &lt;dbl&gt;, Dst_Port &lt;dbl&gt;, Bytes_TRF &lt;dbl&gt;</code></pre></div>
 </div>
 <div id="multicollinearity-adjustment" class="section level2">
 <h2>Multicollinearity Adjustment</h2>
@@ -198,7 +198,7 @@ security_logs
 <span class="st">  </span><span class="kw">mc_adjust</span>())
 ## # A tibble: 30 × 26
 ##    CISCO   IBM Juniper McAfee `Palo Alto Networks`   NSP Attempt Failure
-##    &lt;int&gt; &lt;int&gt;   &lt;int&gt;  &lt;int&gt;                &lt;int&gt; &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;                &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
 ## 1      2     1       1      6                    0     4       5       1
 ## 2      0     2       4      2                    2     0       4       2
 ## 3      2     4       2      2                    0     0       3       3
@@ -209,12 +209,12 @@ security_logs
 ## 8      3     3       1      3                    0     1       6       2
 ## 9      0     1       4      3                    2     2       4       4
 ## 10     2     2       2      4                    0     1       3       0
-## # ... with 20 more rows, and 18 more variables: `174.110.206.174` &lt;int&gt;,
-## #   `223.70.128.61` &lt;int&gt;, `227.12.127.87` &lt;int&gt;, `28.9.24.154` &lt;int&gt;,
-## #   `145.114.4.203` &lt;int&gt;, `151.194.233.198` &lt;int&gt;, `219.142.109.8` &lt;int&gt;,
-## #   `32.73.26.223` &lt;int&gt;, TCP &lt;int&gt;, China &lt;int&gt;, India &lt;int&gt;,
-## #   Korea &lt;int&gt;, Netherlands &lt;int&gt;, Russia &lt;int&gt;, US &lt;int&gt;,
-## #   Src_Port &lt;int&gt;, Dst_Port &lt;int&gt;, Bytes_TRF &lt;int&gt;</code></pre></div>
+## # ... with 20 more rows, and 18 more variables: `174.110.206.174` &lt;dbl&gt;,
+## #   `223.70.128.61` &lt;dbl&gt;, `227.12.127.87` &lt;dbl&gt;, `28.9.24.154` &lt;dbl&gt;,
+## #   `145.114.4.203` &lt;dbl&gt;, `151.194.233.198` &lt;dbl&gt;, `219.142.109.8` &lt;dbl&gt;,
+## #   `32.73.26.223` &lt;dbl&gt;, TCP &lt;dbl&gt;, China &lt;dbl&gt;, India &lt;dbl&gt;,
+## #   Korea &lt;dbl&gt;, Netherlands &lt;dbl&gt;, Russia &lt;dbl&gt;, US &lt;dbl&gt;,
+## #   Src_Port &lt;dbl&gt;, Dst_Port &lt;dbl&gt;, Bytes_TRF &lt;dbl&gt;</code></pre></div>
 <p>By default, <code>mc_adjust</code> removes <em>all</em> columns that violate the variance, dependency, and correlation thresholds. Alternatively, we can use <code>action = &quot;select&quot;</code> as an argument, which provides interactivity where the user can select the variables that violate the correlation threshold that they would like to remove.</p>
 </div>
 <div id="multivariate-statistical-analyses" class="section level2">
@@ -278,12 +278,12 @@ security_logs
 <p>where <span class="math inline">\(X_s\)</span> is the standardized observations, <span class="math inline">\(R^{-1}\)</span> is the inverse of the correlation matrix, and $ $ is the factor loadings matrix. To simplify the results for interpretation, the factor loadings can undergo an orthogonal or oblique rotation. Orthogonal rotations assume independence between the factors while oblique rotations allow the factors to correlate. <code>anomalyDetection</code> utilizes the most common rotation option known as varimax. Varimax rotates the factors orthogonally to maximize the variance of the squared factor loadings which forces large factors to increase and small ones to decrease, providing easier interpretation.</p>
 <p>To begin using factor analysis, the dimensions of the reduced state vector matrix are first passed to the <code>horns_curve</code> function to find the recommended set of eigenvalues.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">horns_curve</span>(state_vec)
-##  [1] 3.413379217 2.915474604 2.554115750 2.256719278 2.001067720
-##  [6] 1.780663565 1.580910010 1.410048519 1.247361636 1.104130151
-## [11] 0.968079883 0.846912992 0.733072794 0.634208441 0.541600629
-## [16] 0.451886199 0.373596369 0.306166193 0.245773367 0.190619696
-## [21] 0.143541737 0.103389457 0.069773709 0.043551302 0.022697721
-## [26] 0.008409727</code></pre></div>
+##  [1] 3.439245506 2.913005373 2.563672193 2.262244482 2.019386914
+##  [6] 1.796979418 1.596330545 1.416343597 1.252498089 1.106750175
+## [11] 0.971713233 0.850360350 0.739934780 0.635012903 0.540182868
+## [16] 0.453037039 0.376705940 0.307633583 0.246400208 0.193385496
+## [21] 0.145210574 0.105407668 0.070845304 0.043546859 0.022880389
+## [26] 0.008166343</code></pre></div>
 <p>Next, the dimensionality is determined by finding the eigenvalues of the correlation matrix of the state vector matrix and retaining only those factors whose eigenvalues are greater than or equal to those produced by <code>horns_curve</code>. We use <code>factor_analysis</code> to reduce the state vector matrix into resultant factors. The <code>factor_analysis</code> function generates a list containing five outputs:</p>
 <ol style="list-style-type: decimal">
 <li><code>fa_loadings</code>: numerical matrix with the original factor loadings</li>
@@ -426,7 +426,7 @@ gplots::<span class="kw">heatmap.2</span>(fa_loadings, <span class="dt">dendrogr
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

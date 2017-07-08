@@ -31,12 +31,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(dplyr)
+#'
 #' x <- data.frame(C1 = rnorm(100), C2 = rnorm(100), C3 = rnorm(100))
 #'
 #' # add Mahalanobis distance results to data frame
 #' x %>%
-#'   mutate(MD = mahalanobis_distance(x))
+#'   dplyr::mutate(MD = mahalanobis_distance(x))
 #'
 #' # add Mahalanobis distance and breakdown distance results to data frame
 #' x %>%
@@ -55,30 +55,30 @@ mahalanobis_distance <- function(data, output = "md", normalize = FALSE) {
   if(missing(data)) {
     stop("Missing data argument", call. = FALSE)
   }
-  if(output != "md" & output != "bd" & output != "both") {
+  if(output != "md" && output != "bd" && output != "both") {
     stop("Invalid output argument; must be 'md', 'bd', or 'both'", call. = FALSE)
   }
-  if(normalize != TRUE & normalize != FALSE) {
+  if(! normalize %in% c(TRUE, FALSE)) {
     stop("Invalid normalize argument; must be TRUE or FALSE", call. = FALSE)
   }
 
   data <- as.matrix(data)
   N <- nrow(data)
   M <- ncol(data)
-  md <- as.vector(rep(0,N),mode = "numeric")
+  md <- rep(0,N)
   bd <- matrix(rep(0,N), nrow = N, ncol = M)
   C <- stats::cov(data)
   IC <- MASS::ginv(C)
   CM <- as.matrix(colMeans(data))
 
 
-  for (i in 1:N) {
+  for (i in seq_len(N)) {
     D <- (data[i,] - t(CM))
     md[i] <- D %*% IC %*% t(D)
     bd[i,] <- abs(D / sqrt(diag(C)))
   }
 
-  if(isTRUE(normalize)) {
+  if(normalize) {
     bd <- bd %*% diag(1 / colSums(data))
   }
 
