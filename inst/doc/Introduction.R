@@ -3,8 +3,12 @@ security_logs <- anomalyDetection::security_logs
 security_logs <- tibble::as_tibble(security_logs)
 
 ## ---- collapse=TRUE, message=FALSE, warning=FALSE------------------------
-# we'll use tidyverse for some common manipulations
-library(tidyverse)
+# we'll use several tidyverse packages for some common manipulations
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(magrittr)
 library(anomalyDetection)
 
 security_logs
@@ -14,7 +18,7 @@ tabulate_state_vector(security_logs, 10)
 
 ## ---- collapse=TRUE------------------------------------------------------
 (state_vec <- security_logs %>%
-  tabulate_state_vector(10) %>%
+  tabulate_state_vector(6) %>%
   mc_adjust())
 
 ## ---- collapse=TRUE------------------------------------------------------
@@ -22,7 +26,7 @@ state_vec %>%
   mahalanobis_distance("both", normalize = TRUE) %>%
   as_tibble
 
-## ---- fig.align='center', fig.width=9, fig.height=6----------------------
+## ---- fig.align='center', fig.width=7, fig.height=6----------------------
 state_vec %>%
   mahalanobis_distance("both", normalize = TRUE) %>%
   as_tibble %>%
@@ -30,6 +34,12 @@ state_vec %>%
   gather(Variable, BD, -c(MD, Block)) %>%
   ggplot(aes(factor(Block), Variable, color = MD, size = BD)) +
   geom_point()
+
+## ---- fig.align='center', fig.width=7, fig.height=6----------------------
+state_vec %>% 
+  hmat(input = "SV", top = 15, normalize = TRUE) +
+  ggtitle("Histogram Matrix of Anomalous Blocks") +
+  ylab(NULL)
 
 ## ---- collapse=TRUE------------------------------------------------------
 state_vec %>%
