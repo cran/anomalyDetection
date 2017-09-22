@@ -137,23 +137,30 @@ tabulate_state_vector <- function(data, block_length, level_limit = 50L,
 
     # Remove NAs
     temp <- dplyr::mutate_(data, .dots = list(BLK = quote(as.numeric(floor((1:n()-1)/block_length)+1))))
-    temp <- dplyr::arrange_(
-      tidyr::spread_(
+    temp <- tidyr::spread_(
         tibble::as.tibble(
           base::table(
             dplyr::group_by_(
               dplyr::select_(
-                dplyr::filter_(
-                  stats::na.omit(
-                    tidyr::gather_(temp,"Variables","Values",names(temp)[-length(names(temp))])
-                  )
-                  ,.dots = ~ Values != "0")
+                dplyr::mutate_(
+                  dplyr::filter_(
+                    stats::na.omit(
+                      tidyr::gather_(temp,"Variables","Values",names(temp)[-length(names(temp))])
+                    )
+                    ,.dots = ~ Values != "0")
+                  ,Values = ~ dplyr::if_else(grepl("[A-Za-z]", Values),
+                                             Values,
+                                             paste0(Variables,"_",Values)))
                 ,~ c(BLK,Values))
               ,"BLK")
           )
         )
         ,"Values","n")
-      ,.dots = ~ as.numeric(BLK))
+    empty <- as.data.frame(matrix(0,nrow = (nblocks - nrow(temp)),
+                                  ncol = ncol(temp)))
+    colnames(empty) <- colnames(temp)
+    empty$BLK <- setdiff(1:nblocks,temp$BLK)
+    temp <- dplyr::arrange_(rbind(temp,empty),.dots = ~ as.numeric(BLK))
     return(
       tibble::as.tibble(
         purrr::map_df(
@@ -168,8 +175,7 @@ tabulate_state_vector <- function(data, block_length, level_limit = 50L,
 
     # Do not remove NAs
     temp <- dplyr::mutate_(data, .dots = list(BLK = quote(as.numeric(floor((1:n()-1)/block_length)+1))))
-    temp <- dplyr::arrange_(
-      tidyr::spread_(
+    temp <- tidyr::spread_(
         tibble::as.tibble(
           base::table(
             dplyr::group_by_(
@@ -190,7 +196,11 @@ tabulate_state_vector <- function(data, block_length, level_limit = 50L,
           )
         )
         ,"Values","n")
-      ,.dots = ~ as.numeric(BLK))
+    empty <- as.data.frame(matrix(0,nrow = (nblocks - nrow(temp)),
+                                  ncol = ncol(temp)))
+    colnames(empty) <- colnames(temp)
+    empty$BLK <- setdiff(1:nblocks,temp$BLK)
+    temp <- dplyr::arrange_(rbind(temp,empty),.dots = ~ as.numeric(BLK))
     return(
       tibble::as.tibble(
         purrr::map_df(
